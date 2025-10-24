@@ -1,5 +1,6 @@
 import random
 import statistics
+import matplotlib.pyplot as plt
 
 simulation_time = 8 * 60  # total simulation time in minutes (8 hours)
 passenger_arrival_rate = 1 / 0.5  # passengers per 30 seconds(avg every 30 seconds)
@@ -74,3 +75,27 @@ for r in results:
     print(f"Average Wait Time: {r['Avg_Wait']:.2f} minutes")
     print(f"Average Queue Length: {r['Avg_Queue']:.2f} passengers")
     print(f"Average Bus Occupancy: {r['Avg_Occupancy']:.2f} passengers")
+
+# Bar chart for Average Wait Time
+plt.figure(figsize=(10,5))
+plt.bar([r['Scenario'] for r in results], [r['Avg_Wait'] for r in results], color='skyblue')
+plt.title("Average Passenger Wait Time by Scenario")
+plt.ylabel("Minutes")
+plt.grid(axis='y', linestyle='--', alpha=0.6)
+plt.show()
+
+# Bar chart for Average Queue Length
+plt.figure(figsize=(10,5))
+plt.bar([r['Scenario'] for r in results], [r['Avg_Queue'] for r in results], color='orange')
+plt.title("Average Queue Length by Scenario")
+plt.ylabel("Passengers")
+plt.grid(axis='y', linestyle='--', alpha=0.6)
+plt.show()
+
+# Bar chart for Average Bus Occupancy
+plt.figure(figsize=(10,5))
+plt.bar([r['Scenario'] for r in results], [r['Avg_Occupancy'] for r in results], color='green')
+plt.title("Average Bus Occupancy by Scenario")
+plt.ylabel("Passengers per Bus")
+plt.grid(axis='y', linestyle='--', alpha=0.6)
+plt.show()
